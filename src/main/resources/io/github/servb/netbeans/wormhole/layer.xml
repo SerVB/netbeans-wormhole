@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.2//EN"
+        "http://www.netbeans.org/dtds/filesystem-1_2.dtd">
+<filesystem>
+    <folder name="Actions">
+        <folder name="Window">
+            <file name="io-github-servb-netbeans-wormhole-WormholeAction.instance">
+                <attr name="displayName" bundlevalue="io.github.servb.netbeans.wormhole.Bundle#CTL_WormholeAction"/>
+                <attr name="instanceCreate" methodvalue="org.openide.awt.Actions.alwaysEnabled"/>
+                <attr name="delegate" newvalue="io.github.servb.netbeans.wormhole.WormholeAction"/>
+                <attr name="noIconInMenu" boolvalue="false"/>
+            </file>
+        </folder>
+    </folder>
+    <folder name="Menu">
+        <folder name="Window">
+            <file name="io-github-servb-netbeans-wormhole-WormholeAction.shadow">
+                <attr name="originalFile"
+                      stringvalue="Actions/Window/io-github-servb-netbeans-wormhole-WormholeAction.instance"/>
+                <attr name="position" intvalue="-101"/>
+            </file>
+        </folder>
+    </folder>
+
+    <folder name="Actions">
+        <folder name="Window">
+            <file name="io-github-servb-netbeans-wormhole-WormholeTopComponent.instance">
+                <attr name="instanceCreate" methodvalue="org.openide.windows.TopComponent.openAction"/>
+                <attr name="component" newvalue="io.github.servb.netbeans.wormhole.HelloWorldTopComponent"/>
+                <attr name="preferredID" stringvalue="WormholeTopComponent"/>
+                <attr name="displayName" bundlevalue="io.github.servb.netbeans.wormhole.Bundle#CTL_WormholeOpenAction"/>
+            </file>
+        </folder>
+    </folder>
+
+    <folder name="Windows2">
+        <folder name="Components">
+            <file name="WormholeTopComponent.settings">
+                <![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+                <!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
+                <settings version="1.0">
+                    <instance class="io.github.servb.netbeans.wormhole.WormholeTopComponent"/>
+                </settings>
+                ]]>
+            </file>
+        </folder>
+        <folder name="Modes">
+            <folder name="editor">
+                <file name="WormholeTopComponent.wstcref">
+                    <![CDATA[
+                    <?xml version="1.0" encoding="UTF-8"?>
+                    <!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
+                    <tc-ref version="2.0">
+                        <tc-id id="WormholeTopComponent"/>
+                        <state opened="false"/>
+                    </tc-ref>
+                    ]]>
+                </file>
+            </folder>
+        </folder>
+    </folder>
+</filesystem>

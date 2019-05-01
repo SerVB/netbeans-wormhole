@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+OpenIDE-Module-Localizing-Bundle: io/github/servb/netbeans/wormhole/Bundle.properties
+OpenIDE-Module-Layer: io/github/servb/netbeans/wormhole/layer.xml
+OpenIDE-Module-Module-Dependencies: org.netbeans.api.annotations.common/1 > 1.21.1, org.openide.util > 8.33.1, org.openide.awt > 7.59.1, org.openide.windows > 6.39.1, org.openide.loaders > 6.39.1, org.openide.filesystems > 6.39.1, org.openide.nodes > 6.39.1

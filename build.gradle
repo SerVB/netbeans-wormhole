@@ -1,0 +1,78 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "cz.kubacki.gradle.plugins:gradle-nbm-plugin:1.17.0"
+        gradleApi()
+    }
+}
+
+plugins {
+    id "org.jetbrains.kotlin.jvm" version "1.3.31"
+}
+
+apply plugin: "cz.kubacki.nbm"
+
+ext {
+    netbeansVersion = "RELEASE82"
+    wormholeVersion = "0.9.5.5"
+    
+    jna_version = "4.5.1"
+    apache_common_version = "3.7"
+    kotlin_reflect_version = "1.3.31"
+}
+
+group "io.github.servb"
+version "1.0"
+nbm {
+    moduleName = "Wormhole"
+}
+
+repositories {
+    mavenCentral()
+    maven { url "http://bits.netbeans.org/maven2/" }
+    maven { url "https://jetbrains.bintray.com/wormhole" }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    api "org.netbeans.api:org-openide-awt:$netbeansVersion"
+    api "org.netbeans.api:org-openide-loaders:$netbeansVersion"
+    api "org.netbeans.api:org-openide-util:$netbeansVersion"
+    api "org.netbeans.api:org-openide-windows:$netbeansVersion"
+    implementation "org.jetbrains.wormhole:component:$wormholeVersion"
+    implementation "org.jetbrains.wormhole:interop:$wormholeVersion"
+    implementation "org.jetbrains.wormhole:utils:$wormholeVersion"
+
+    implementation "net.java.dev.jna:jna:$jna_version"  // TODO: remove explicit dependency for Wormhole
+    implementation "net.java.dev.jna:jna-platform:$jna_version"  // TODO: remove explicit dependency for Wormhole
+    implementation "org.apache.commons:commons-lang3:$apache_common_version"  // TODO: remove explicit dependency for Wormhole
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_reflect_version"  // TODO: remove explicit dependency for Wormhole
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+task netBeansRun(type: Exec) {
+    doFirst {
+        def confFile = project.file("$project.buildDir/testuserdir/etc/netbeans.conf")
+        confFile.parentFile.mkdirs()
+        confFile.write "netbeans_extraclusters=\"$project.buildDir/module\""
+    }
+
+    workingDir "${project.buildDir}"
+
+    def executable = System.getProperty("os.name").toLowerCase().contains("windows") ? "netbeans.exe" : "netbeans"
+    if (project.hasProperty("netBeansInstallDir")) {
+        executable = netBeansInstallDir + "/bin/" + executable
+    } else {
+        logger.warn("netBeansInstallDir property is not specified. Assuming \"netbeans\" executable is on PATH.")
+    }
+    commandLine executable, "--userdir", "$project.buildDir/testuserdir"
+}
