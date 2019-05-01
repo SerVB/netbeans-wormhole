@@ -29,6 +29,10 @@ class WormholeTopComponent(private val windowId: WindowId) : TopComponent() {
         displayName = WindowsNativeApplicationScanner.getWindowInfo(windowId).name
     }
 
+    override fun componentClosed() {
+        wormhole.unembed()
+    }
+
     override fun preferredID(): String = windowId.toString()
     override fun getPersistenceType(): Int = PERSISTENCE_NEVER
 }
