@@ -17,7 +17,9 @@ class WormholeAction : ActionListener {
                 .getOpenedWindows("notepad")
                 .first()
 
-            WormholeTopComponent(notepadWindow, wormhole).open()
+            val wormholeTopComponent = WormholeTopComponent(notepadWindow, wormhole)
+            wormholeTopComponent.open()
+            wormholeTopComponent.requestActive()
         } else {
             JOptionPane.showMessageDialog(
                 WindowManager.getDefault().mainWindow,
