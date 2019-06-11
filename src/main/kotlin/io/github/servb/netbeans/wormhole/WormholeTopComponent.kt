@@ -7,21 +7,15 @@ import com.jetbrains.wormhole.swing.JWormhole
 import org.openide.windows.TopComponent
 import java.awt.BorderLayout
 
-class WormholeTopComponent(private val windowId: WindowId) : TopComponent() {
+class WormholeTopComponent(private val windowId: WindowId, private val wormhole: JWormhole) : TopComponent() {
 
     init {
         this.layout = BorderLayout()
-    }
-
-    private val wormhole by lazy {
-        JWormhole().also { wormhole ->
-            this.add(wormhole)
-            wormhole.addEventListener(WormholeEvent.EmbeddedWindowDead) { this.close() }
-        }
+        this.add(wormhole)
+        wormhole.addEventListener(WormholeEvent.EmbeddedWindowDead) { this.close() }
     }
 
     override fun componentOpened() {
-        check(wormhole.isCompatiblePlatform) { "bad platform" }
         check(wormhole.canEmbedWindow(windowId)) { "bad window" }
 
         wormhole.embed(windowId)
