@@ -21,12 +21,16 @@ class WormholeAction : ActionListener {
             wormholeTopComponent.open()
             wormholeTopComponent.requestActive()
         } else {
-            JOptionPane.showMessageDialog(
-                WindowManager.getDefault().mainWindow,
-                "Your OS isn't supported by Wormhole yet.",
-                "Unsupported platform",
-                JOptionPane.ERROR_MESSAGE
-            )
+            showUnsupportedPlatformMethod()
         }
+    }
+
+    private fun showUnsupportedPlatformMethod() {
+        JOptionPane.showMessageDialog(
+            WindowManager.getDefault().mainWindow,
+            "Your OS isn't supported by Wormhole yet.",
+            "Unsupported platform",
+            JOptionPane.ERROR_MESSAGE
+        )
     }
 }
